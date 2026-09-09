@@ -9,8 +9,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Florida Census",
+    "title": "Race and Ethnicity in Sarasota County, Florida",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "While Sarasota County as a whole is predominantly White (around 84% overall), census tracts show distinct geographic patterns:\n\nBlack residents are concentrated in northern Sarasota near the historic Newtown community, reaching up to 74% in that tract while remaining under 2% across most other tracts.\nHispanic residents make up roughly 10% of the county and are most represented in urban Sarasota and eastern tracts towards North Port.\nAsian residents make up about 2% of the county population and are evenly distributed across tracts."
   }
 ]
