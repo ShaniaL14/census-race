@@ -9,8 +9,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Race and Ethnicity in Sarasota County, Florida",
+    "title": "Florida Census Demographics (2000–2020)",
     "section": "",
-    "text": "While Sarasota County as a whole is predominantly White (around 84% overall), census tracts show distinct geographic patterns:\n\nBlack residents are concentrated in northern Sarasota near the historic Newtown community, reaching up to 74% in that tract while remaining under 2% across most other tracts.\nHispanic residents make up roughly 10% of the county and are most represented in urban Sarasota and eastern tracts towards North Port.\nAsian residents make up about 2% of the county population and are evenly distributed across tracts."
+    "text": "Between 2000 and 2020, Florida’s Hispanic population grew rapidly, expanding not just in traditional metro areas like Miami-Dade, but across central Florida (such as Osceola and Orange counties) and southwest Florida.\nHover over any county to see its 20-year path (2000 → 2010 → 2020). Use the layer controls in the top right to switch between the 20-year percentage point increase and the 2020 baseline."
+  },
+  {
+    "objectID": "index.html#two-decades-of-demographic-change-across-florida",
+    "href": "index.html#two-decades-of-demographic-change-across-florida",
+    "title": "Florida Census Demographics (2000–2020)",
+    "section": "",
+    "text": "Between 2000 and 2020, Florida’s Hispanic population grew rapidly, expanding not just in traditional metro areas like Miami-Dade, but across central Florida (such as Osceola and Orange counties) and southwest Florida.\nHover over any county to see its 20-year path (2000 → 2010 → 2020). Use the layer controls in the top right to switch between the 20-year percentage point increase and the 2020 baseline."
   }
 ]
