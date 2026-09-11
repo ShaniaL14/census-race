@@ -1,5 +1,5 @@
 ---
-title: "Florida Census Demographics (2000–2020)"
+title: "Sarasota County Census Tract Demographics (2020)"
 ---
 
 ```{r}
@@ -12,91 +12,85 @@ library(sf)
 library(leaflet)
 library(htmltools)
 
-# Load county boundaries and decennial census data
-fl_geo  <- read_rds("data/fl_geo.rds")
-fl_race <- read_rds("data/fl_race_2000_2020.rds")
+# Load census tract data with geometries
+sarasota_race <- read_rds("data/sarasota_race.rds")
 
-# Reshape data to wide format to compute percentage point changes (2000 to 2020)
-race_wide <- fl_race |>
+# Reshape data to wide format to compute demographic percentages by tract
+tract_map <- sarasota_race |>
   mutate(pct = round(100 * (value / summary_value), 1)) |>
-  select(GEOID, variable, year, pct) |>
-  pivot_wider(names_from = c(variable, year), values_from = pct) |>
-  mutate(
-    diff_hisp  = round(hispanic_2020 - hispanic_2000, 1),
-    diff_black = round(black_2020 - black_2000, 1),
-    diff_white = round(white_2020 - white_2000, 1),
-    diff_asian = round(asian_2020 - asian_2000, 1)
-  )
-
-# Combine with county geometries and reproject to WGS84
-fl_map <- left_join(fl_geo, race_wide, by = "GEOID") |>
+  pivot_wider(
+    id_cols = c(GEOID, NAME, geometry),
+    names_from = variable,
+    values_from = pct
+  ) |>
+  st_as_sf() |>
   st_transform(4326)
 
-# Create hover labels summarizing all four groups for each county
+# Create hover labels summarizing demographic percentages for each tract
 labels <- sprintf(
   "<strong>%s</strong><br/>
-   Hispanic: %s%% &rarr; %s%% (%+0.1f pts)<br/>
-   White: %s%% &rarr; %s%% (%+0.1f pts)<br/>
-   Black: %s%% &rarr; %s%% (%+0.1f pts)<br/>
-   Asian: %s%% &rarr; %s%% (%+0.1f pts)",
-  fl_map$NAME,
-  fl_map$hispanic_2000, fl_map$hispanic_2020, fl_map$diff_hisp,
-  fl_map$white_2000, fl_map$white_2020, fl_map$diff_white,
-  fl_map$black_2000, fl_map$black_2020, fl_map$diff_black,
-  fl_map$asian_2000, fl_map$asian_2020, fl_map$diff_asian
+   Hispanic: %s%%<br/>
+   White: %s%%<br/>
+   Black: %s%%<br/>
+   Asian: %s%%",
+  tract_map$NAME,
+  tract_map$hispanic,
+  tract_map$white,
+  tract_map$black,
+  tract_map$asian
 ) |> lapply(HTML)
 
 # Define color scales for each demographic group
-pal_hisp  <- colorNumeric("YlOrRd", domain = fl_map$diff_hisp)
-pal_white <- colorNumeric("Blues", domain = fl_map$diff_white)
-pal_black <- colorNumeric("Purples", domain = fl_map$diff_black)
-pal_asian <- colorNumeric("Greens", domain = fl_map$diff_asian)
+pal_hisp  <- colorNumeric("YlOrRd", domain = tract_map$hispanic)
+pal_white <- colorNumeric("Blues", domain = tract_map$white)
+pal_black <- colorNumeric("Purples", domain = tract_map$black)
+pal_asian <- colorNumeric("Greens", domain = tract_map$asian)
 ```
 
-## Two Decades of Demographic Change Across Florida
+## Demographic Distribution Across Sarasota County Census Tracts
 
-Between 2000 and 2020, Florida saw significant demographic shifts across all major racial and ethnic groups:
+This map displays racial and ethnic demographics across Sarasota County census tracts from the 2020 Decennial Census:
 
-- **Hispanic**: Substantial increases statewide, especially in central and southwest Florida.
-- **White (non-Hispanic)**: Decreased as a overall percentage of population in almost all 67 counties.
-- **Black**: Steady population shares in northern counties, with growth in select central and southern metros.
-- **Asian**: Steady percentage growth across major suburban and university counties.
+- **Hispanic**: Higher concentrations in north Sarasota and central tracts.
+- **White (non-Hispanic)**: Makes up the majority across coastal and suburban tracts.
+- **Black**: Highest shares in Newtown and northern city neighborhoods.
+- **Asian**: Distributed across suburban tracts, including Lakewood Ranch and Palmer Ranch.
 
-Use the radio buttons in the upper right to toggle which demographic shift colors the map. Hover over any county to view the full 20-year shift for all four groups.
+Use the radio buttons in the upper right to switch between demographic groups. Hover over any census tract to inspect all four percentages.
 
 ```{r}
 #| label: interactive-map
 #| message: false
 #| echo: false
 
-leaflet(fl_map, width = "100%", height = "540px") |>
+leaflet(tract_map, width = "100%", height = "540px") |>
   addTiles() |>
   addPolygons(
-    group = "Hispanic Change",
-    fillColor = ~pal_hisp(diff_hisp),
+    group = "Hispanic %",
+    fillColor = ~pal_hisp(hispanic),
     fillOpacity = 0.7, weight = 1, color = "white",
     label = labels
   ) |>
   addPolygons(
-    group = "White Change",
-    fillColor = ~pal_white(diff_white),
+    group = "White %",
+    fillColor = ~pal_white(white),
     fillOpacity = 0.7, weight = 1, color = "white",
     label = labels
   ) |>
   addPolygons(
-    group = "Black Change",
-    fillColor = ~pal_black(diff_black),
+    group = "Black %",
+    fillColor = ~pal_black(black),
     fillOpacity = 0.7, weight = 1, color = "white",
     label = labels
   ) |>
   addPolygons(
-    group = "Asian Change",
-    fillColor = ~pal_asian(diff_asian),
+    group = "Asian %",
+    fillColor = ~pal_asian(asian),
     fillOpacity = 0.7, weight = 1, color = "white",
     label = labels
   ) |>
   addLayersControl(
-    baseGroups = c("Hispanic Change", "White Change", "Black Change", "Asian Change"),
+    baseGroups = c("Hispanic %", "White %", "Black %", "Asian %"),
     options = layersControlOptions(collapsed = FALSE)
   )
 ```
