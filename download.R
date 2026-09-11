@@ -26,9 +26,9 @@ race_vars_2000 <- c(
   asian    = "P004008"
 )
 
-# Download 2020 county data with geometries
+# Download 2020 census tract data with geometries
 fl_2020 <- get_decennial(
-  geography = "county",
+  geography = "tract",
   variables = race_vars_2020,
   summary_var = "P2_001N",
   state = "FL",
