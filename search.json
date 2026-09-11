@@ -9,15 +9,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Florida Census Demographics (2000–2020)",
+    "title": "Sarasota County Census Tract Demographics (2020)",
     "section": "",
-    "text": "Between 2000 and 2020, Florida saw significant demographic shifts across all major racial and ethnic groups:\n\nHispanic: Substantial increases statewide, especially in central and southwest Florida.\nWhite (non-Hispanic): Decreased as a overall percentage of population in almost all 67 counties.\nBlack: Steady population shares in northern counties, with growth in select central and southern metros.\nAsian: Steady percentage growth across major suburban and university counties.\n\nUse the radio buttons in the upper right to toggle which demographic shift colors the map. Hover over any county to view the full 20-year shift for all four groups."
+    "text": "This map displays racial and ethnic demographics across Sarasota County census tracts from the 2020 Decennial Census:\n\nHispanic: Higher concentrations in north Sarasota and central tracts.\nWhite (non-Hispanic): Makes up the majority across coastal and suburban tracts.\nBlack: Highest shares in Newtown and northern city neighborhoods.\nAsian: Distributed across suburban tracts, including Lakewood Ranch and Palmer Ranch.\n\nUse the radio buttons in the upper right to switch between demographic groups. Hover over any census tract to inspect all four percentages."
   },
   {
-    "objectID": "index.html#two-decades-of-demographic-change-across-florida",
-    "href": "index.html#two-decades-of-demographic-change-across-florida",
-    "title": "Florida Census Demographics (2000–2020)",
+    "objectID": "index.html#demographic-distribution-across-sarasota-county-census-tracts",
+    "href": "index.html#demographic-distribution-across-sarasota-county-census-tracts",
+    "title": "Sarasota County Census Tract Demographics (2020)",
     "section": "",
-    "text": "Between 2000 and 2020, Florida saw significant demographic shifts across all major racial and ethnic groups:\n\nHispanic: Substantial increases statewide, especially in central and southwest Florida.\nWhite (non-Hispanic): Decreased as a overall percentage of population in almost all 67 counties.\nBlack: Steady population shares in northern counties, with growth in select central and southern metros.\nAsian: Steady percentage growth across major suburban and university counties.\n\nUse the radio buttons in the upper right to toggle which demographic shift colors the map. Hover over any county to view the full 20-year shift for all four groups."
+    "text": "This map displays racial and ethnic demographics across Sarasota County census tracts from the 2020 Decennial Census:\n\nHispanic: Higher concentrations in north Sarasota and central tracts.\nWhite (non-Hispanic): Makes up the majority across coastal and suburban tracts.\nBlack: Highest shares in Newtown and northern city neighborhoods.\nAsian: Distributed across suburban tracts, including Lakewood Ranch and Palmer Ranch.\n\nUse the radio buttons in the upper right to switch between demographic groups. Hover over any census tract to inspect all four percentages."
   }
 ]
